@@ -70,7 +70,7 @@ gulp.task('dimg', function() {
 gulp.task('dwebserver', function(){
     gulp.src('builds/dev')
         .pipe(webserver({
-            //livereload: true,
+            livereload: true,
             open: true
         }))
 });
