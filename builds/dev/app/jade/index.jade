@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+   head
+      meta(charset='utf-8')
+      title fitness
+      meta(http-equiv='X-UA-Compatible', content='IE=edge')
+      meta(name='viewport', content='width=device-width, initial-scale=no')
+      link(href="lib.css", rel="stylesheet")
+      link(href="app.css", rel="stylesheet")
+   body(ng-app)
+      .container-fluid
+         .row.text-center
+            .col-lg-2.col-md-2.col-sm-2.col-xs-12
+               img(src="i/logo.png", alt="fitness logo").img-responsive.logo
+            .col-lg-4.col-md-4.col-sm-4.col-xs-4(ng-cloak) {{ 'qwe' + '!' }}
+            .col-lg-2.col-md-2.col-sm-2.col-xs-12.main-menu About
+            .col-lg-2.col-md-2.col-sm-2.col-xs-12.main-menu Contact us
+            .col-lg-2.col-md-2.col-sm-2.col-xs-12.main-menu Sing In
+
+      script(src="lib.js")
+      script(src="app.js")
