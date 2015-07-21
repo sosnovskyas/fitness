@@ -13,6 +13,7 @@ gulp.task('djs',function(){
     gulp.src([
         'bower/jquery/dist/jquery.js',
         'bower/angular/angular.js',
+        'bower/angular-ui-router/release/angular-ui-router.js',
         'bower/angular-roure/angular-roure.js'
     ])
         .pipe(concat('lib.js'))
@@ -41,6 +42,7 @@ gulp.task('dcss',function(){
 
 });
 
+//developer WATCH
 gulp.task('dwatch', function(){
     gulp.watch('builds/dev/app/**/*.js',['djs']);
     gulp.watch('builds/dev/app/**/*.scss',['dcss']);
@@ -49,14 +51,15 @@ gulp.task('dwatch', function(){
 
 //developer JADE
 gulp.task('djade', function() {
-    //var YOUR_LOCALS = {};
-    gulp.src(['' +
-        'builds/dev/app/jade/*.jade'
+    gulp.src([
+        'builds/dev/app/**/*.jade'
     ])
         .pipe(jade({
             pretty: true
         }))
         .on('error', console.log)
+        .pipe(gulp.dest('./builds/dev/app'));
+    gulp.src(['builds/dev/app/index.html'])
         .pipe(gulp.dest('./builds/dev'))
 });
 
