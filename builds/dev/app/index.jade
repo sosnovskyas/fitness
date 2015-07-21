@@ -7,17 +7,12 @@ html(lang="ru-RU")
       meta(name='viewport', content='width=device-width, initial-scale=no')
       link(href="lib.css", rel="stylesheet")
       link(href="app.css", rel="stylesheet")
-   body(ng-app).bg
-      .container-fluid
-        .row.text-center.main-menu
-            .col-lg-2.col-md-2.col-sm-2.col-xs-12
-                img(src="i/logo.png", alt="fitness logo").img-responsive.logo
-                p fitness
-            .col-lg-4.col-md-4.col-sm-4.col-xs-4(ng-cloak) {{ 'qwe' + '!' }}
-            .col-lg-2.col-md-2.col-sm-2.col-xs-12.main-menu_item About
-            .col-lg-2.col-md-2.col-sm-2.col-xs-12.main-menu_item Contact us
-            .col-lg-2.col-md-2.col-sm-2.col-xs-12.main-menu_item Sing In
-        .row
-              .col-xs-12(ui-view)
+   body(ng-app="fitness").bg
+      .container
+         .row
+            .col-xs-12(ng-include="'app/navbar/navbar.html'")
+      .container
+         .row
+            .col-xs-12.index_content(ui-view)
       script(src="lib.js")
       script(src="main.js")
