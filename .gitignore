@@ -4,7 +4,6 @@ bower
 builds/dev/lib.css
 builds/dev/lib.js
 builds/dev/app.css
-builds/dev/app.js
 builds/dev/main.js
 builds/dev/**/*.html
 builds/dev/i
