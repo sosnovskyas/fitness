@@ -14,7 +14,9 @@ gulp.task('djs',function(){
         'bower/jquery/dist/jquery.js',
         'bower/angular/angular.js',
         'bower/angular-ui-router/release/angular-ui-router.js',
-        'bower/angular-roure/angular-roure.js'
+        'bower/angular-roure/angular-roure.js',
+        'bower/bootstrap/dist/js/bootstrap.js',
+
     ])
         .pipe(concat('lib.js'))
         .pipe(gulp.dest('builds/dev'));
