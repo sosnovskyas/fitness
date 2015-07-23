@@ -6,22 +6,40 @@
         .config(FitnessConfig);
 
     function FitnessConfig ($stateProvider, $urlRouterProvider){
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/home');
         $stateProvider
             .state('home',{
-                url: '/',
+                url: '/home',
                 templateUrl: 'app/home/home.html'
             })
             .state('about',{
                 url:'/about',
                 templateUrl: 'app/about/about.html'
             })
-            .state('contacts',{
-                url:'/contacts',
-                templateUrl: 'app/contacts/contacts.html'
+
+            .state('userSpace', {
+                url: '/userSpace',
+                templateUrl: 'app/userSpace/userSpace.html'
             })
-            .state('profile',{
-                url:'/profile',
+
+            .state('userSpace.workout', {
+                url: '/workout',
+                template: 'TEST'
+                //templateUrl: 'app/workout/workout.html'
+            })
+
+            .state('userSpace.exercises', {
+                url: '/exercises',
+                templateUrl: 'app/exercises/exercises.html'
+            })
+
+            .state('userSpace.statistics', {
+                url: '/statistics',
+                templateUrl: 'app/statistics/statistics.html'
+            })
+
+            .state('userSpace.profile', {
+                url: '/profile',
                 templateUrl: 'app/profile/profile.html'
             })
     }
