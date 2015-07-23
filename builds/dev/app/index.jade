@@ -1,5 +1,5 @@
 doctype html
-html(lang="ru-RU")
+html(lang="ru-RU", ng-app="fitness")
    head
       meta(charset='utf-8')
       title fitness
@@ -7,12 +7,18 @@ html(lang="ru-RU")
       meta(name='viewport', content='width=device-width, initial-scale=no')
       link(href="lib.css", rel="stylesheet")
       link(href="app.css", rel="stylesheet")
-   body(ng-app="fitness").bg
+   body.bg
+      nav.navbar.navbar-inverse
+         .navbar-header
+            a(ui-sref="#").navbar-brand Fitness
+         ul.nav.navbar-nav
+            li
+               a(ui-sref="home" ui-sref-active="active") Home
+            li
+               a(ui-sref="about" ui-sref-active="active") About
+            li
+               a(ui-sref="userSpace" ui-sref-active="active") Sing In
       .container
-         .row
-            .col-xs-12(ng-include="'app/navbar/navbar.html'")
-      .container
-         .row
-            .col-xs-12.index_content(ui-view)
+         div(ui-view)
       script(src="lib.js")
       script(src="main.js")
