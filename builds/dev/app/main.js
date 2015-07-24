@@ -42,17 +42,33 @@
                 templateUrl: 'app/statistics/statistics.html'
             })
             .state('userSpace.statistics.detailed', {
-                url: '/statistics',
+                url: '/detailed',
                 templateUrl: 'app/statistics/statisticsDetailed.html'
             })
             .state('userSpace.statistics.common', {
-                url: '/statistics',
+                url: '/common',
                 templateUrl: 'app/statistics/statisticsCommon.html'
             })
 
             .state('userSpace.profile', {
                 url: '/profile',
                 templateUrl: 'app/profile/profile.html'
+            })
+            .state('userSpace.profile.account', {
+                url: '/account',
+                templateUrl: 'app/profile/profileAccount.html'
+            })
+            .state('userSpace.profile.password', {
+                url: '/password',
+                templateUrl: 'app/profile/profilePassword.html'
+            })
+            .state('userSpace.profile.design', {
+                url: '/design',
+                templateUrl: 'app/profile/profileDesign.html'
+            })
+            .state('userSpace.profile.exit', {
+                url: '/exit',
+                templateUrl: 'app/profile/proflieExit.html'
             });
     }
 
