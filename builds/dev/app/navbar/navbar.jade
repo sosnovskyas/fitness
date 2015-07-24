@@ -1,25 +1,10 @@
-nav.navbar.navbar-default
-    .container-fluid
-        // Brand and toggle get grouped for better mobile display
-        .navbar-header
-            .navbar-brand
-                img(src="i/logo.png", height=30, width=30).text-center
-            button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
-                span.sr-only Toggle navigation
-                span.icon-bar
-                span.icon-bar
-                span.icon-bar
-        // Collect the nav links, forms, and other content for toggling
-        .collapse.navbar-collapse
-            ul.nav.navbar-nav.navbar-left
-                li(ui-sref-active="active")
-                    a(ui-sref="home", href='') Fitness
-                        span.sr-only (current)
-            ul.nav.navbar-nav.navbar-right
-                li(ui-sref-active="active")
-                    a(ui-sref="about", href='') About
-                li(ui-sref-active="active")
-                    a(ui-sref="contacts", href='') Contact us
-                li(ui-sref-active="active")
-                    a(ui-sref="profile", href='') Sing In
-
+nav.navbar.navbar-inverse
+    .navbar-header
+        a(ui-sref="#").navbar-brand Fitness
+    ul.nav.navbar-nav
+        li
+            a(ui-sref="home" ui-sref-active="active") Home
+        li
+            a(ui-sref="about" ui-sref-active="active") About
+        li
+            a(ui-sref="userSpace" ui-sref-active="active") Sing In

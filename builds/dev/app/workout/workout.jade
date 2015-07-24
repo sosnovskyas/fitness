@@ -1,3 +1,21 @@
-h1 WORKOUT
-ul
-    li(ng-repeat="dog in dogs") {{ dog }}
+.row
+    .col-xs-12
+        img(alt="IMG", height=300, width="100%")
+.row
+    .col-xs-12(ng-include="'app/userSpace/userSpaceMenu.html'")
+.row
+    .col-xs-3
+        ul
+            li Name: {{'name'}}
+            li Height: {{'height'}}
+            li Widht: {{'widht'}}
+            li Birth: {{'birth'}}
+    .col-xs-9
+        h1 WORKOUT
+        img(data-src="", alt="image", height=300, width="100%")
+        img(data-src="", alt="image", height=300, width="100%")
+        img(data-src="", alt="image", height=300, width="100%")
+        img(data-src="", alt="image", height=300, width="100%")
+        img(data-src="", alt="image", height=300, width="100%")
+        img(data-src="", alt="image", height=300, width="100%")
+

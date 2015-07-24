@@ -6,7 +6,11 @@
         .config(FitnessConfig);
 
     function FitnessConfig($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/home');
+
+        $urlRouterProvider
+            .when('/userSpace', '/userSpace/workout')
+            .otherwise('/home');
+
         $stateProvider
             .state('home', {
                 url: '/home',
@@ -40,7 +44,7 @@
             .state('userSpace.profile', {
                 url: '/profile',
                 templateUrl: 'app/profile/profile.html'
-            })
+            });
     }
 
 })();
