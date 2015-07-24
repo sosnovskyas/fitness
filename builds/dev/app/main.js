@@ -9,6 +9,7 @@
 
         $urlRouterProvider
             .when('/userSpace', '/userSpace/workout')
+            //.when('/userSpace/statistics', '/userSpace/statistics/common')
             .otherwise('/home');
 
         $stateProvider
@@ -39,6 +40,14 @@
             .state('userSpace.statistics', {
                 url: '/statistics',
                 templateUrl: 'app/statistics/statistics.html'
+            })
+            .state('userSpace.statistics.detailed', {
+                url: '/statistics',
+                templateUrl: 'app/statistics/statisticsDetailed.html'
+            })
+            .state('userSpace.statistics.common', {
+                url: '/statistics',
+                templateUrl: 'app/statistics/statisticsCommon.html'
             })
 
             .state('userSpace.profile', {
