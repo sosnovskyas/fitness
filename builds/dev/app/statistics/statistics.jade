@@ -2,4 +2,14 @@
     .col-xs-12(ng-include="'app/userSpace/userSpaceMenu.html'")
 .row
     .col-xs-12
-        h1 statistics
+        h1 exercises
+.row
+    .col-xs-3(ng-include="'app/userBar/userBar.html'")
+    .col-xs-9
+        ul.nav.nav-tabs.nav-justified
+            li(role='presentation', ui-sref-active="active")
+                a(ui-sref="userSpace.statistics.detailed") детально
+            li(role='presentation', ui-sref-active="active")
+                a(ui-sref="userSpace.statistics.common") общая
+        .row
+            .col-xs-12(ui-view="")
