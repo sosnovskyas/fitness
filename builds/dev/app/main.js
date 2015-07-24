@@ -1,19 +1,19 @@
-;(function(){
+;(function () {
     'use strict';
 
     angular
-        .module('fitness',['ui.router'])
+        .module('fitness', ['ui.router'])
         .config(FitnessConfig);
 
-    function FitnessConfig ($stateProvider, $urlRouterProvider){
+    function FitnessConfig($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/home');
         $stateProvider
-            .state('home',{
+            .state('home', {
                 url: '/home',
                 templateUrl: 'app/home/home.html'
             })
-            .state('about',{
-                url:'/about',
+            .state('about', {
+                url: '/about',
                 templateUrl: 'app/about/about.html'
             })
 
@@ -24,8 +24,7 @@
 
             .state('userSpace.workout', {
                 url: '/workout',
-                template: 'TEST'
-                //templateUrl: 'app/workout/workout.html'
+                templateUrl: 'app/workout/workout.html'
             })
 
             .state('userSpace.exercises', {
