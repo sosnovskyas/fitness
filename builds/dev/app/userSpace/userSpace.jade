@@ -1,6 +1,14 @@
-.jumbotron.text-center
-    a.btn.btn-primary(ui-sref=".workout" ui-sref-active="active") WorkOut
-    a.btn.btn-primary(ui-sref=".exercises" ui-sref-active="active") Exercises
-    a.btn.btn-primary(ui-sref=".statistics" ui-sref-active="active") Statistics
-    a.btn.btn-primary(ui-sref=".profile" ui-sref-active="active") Profile
-div(ui-view)
+.row
+    .col-xs-12
+        ul.nav.navbar-nav.navbar-inverse
+            li
+                a(ui-sref=".workout" ui-sref-active="active") Workout
+            li
+                a(ui-sref=".exercises" ui-sref-active="active") Exercises
+            li
+                a(ui-sref=".statistics" ui-sref-active="active") Statistics
+            li
+                a(ui-sref=".profile" ui-sref-active="active") Profile
+        .row
+            .col-xs-12
+                div(ui-view="")
