@@ -1,10 +1,5 @@
 .idea
 node_modules
 bower
-builds/dev/lib.css
-builds/dev/lib.js
-builds/dev/app.css
-builds/dev/main.js
-builds/dev/**/*.html
-builds/dev/i
+builds/dev
 builds/prod

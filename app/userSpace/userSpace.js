@@ -14,7 +14,7 @@
         $stateProvider
             .state('userSpace', {
                 url: '/userSpace',
-                templateUrl: 'app/userSpace/userSpace.html'
+                templateUrl: 'userSpace/userSpace.html'
             })
 
     }

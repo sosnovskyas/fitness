@@ -10,15 +10,15 @@
         $stateProvider
             .state('userSpace.statistics', {
                 url: '/statistics',
-                templateUrl: 'app/statistics/statistics.html'
+                templateUrl: 'statistics/statistics.html'
             })
             .state('userSpace.statistics.detailed', {
                 url: '/detailed',
-                templateUrl: 'app/statistics/statisticsDetailed.html'
+                templateUrl: 'statistics/statisticsDetailed.html'
             })
             .state('userSpace.statistics.common', {
                 url: '/common',
-                templateUrl: 'app/statistics/statisticsCommon.html'
+                templateUrl: 'statistics/statisticsCommon.html'
             })
     }
 })();

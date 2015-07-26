@@ -8,7 +8,7 @@
         $stateProvider
             .state('userSpace.workout', {
                 url: '/workout',
-                templateUrl: 'app/workout/workout.html'
+                templateUrl: 'workout/workout.html'
             })
 
     }
