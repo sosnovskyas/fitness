@@ -15,7 +15,6 @@
   },
   "user-id-1": {
     "userInfo": {
-      "userLogin" : "AlexS",
       "userName" : "Sosnovsky Alexey",
       "userEmail" : "q@w.ru",
       "userPasswordHash" : "d131dd02c5e6eec4693d9a0698aff95c",
@@ -89,7 +88,6 @@
   },
   "user-id-2": {
     "userInfo": {
-      "userLogin" : "AlexS",
       "userName" : "Sosnovsky Alexey",
       "userEmail" : "q@w.ru",
       "userPasswordHash" : "d131dd02c5e6eec4693d9a0698aff95c",
