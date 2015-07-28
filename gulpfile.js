@@ -15,21 +15,20 @@ gulp.task('djs',function(){
         'bower/angular/angular.js',
         'bower/angular-ui-router/release/angular-ui-router.js',
         'bower/angular-roure/angular-roure.js',
-        'bower/bootstrap/dist/js/bootstrap.js',
-
+        'bower/bootstrap/dist/js/bootstrap.js'
     ])
         .pipe(concat('lib.js'))
         .pipe(gulp.dest('builds/dev'));
 
     // custom scripts
-    gulp.src(['builds/dev/app/**/*.js'])
+    gulp.src(['app/**/*.js'])
         .pipe(concat('main.js'))
         .pipe(gulp.dest('builds/dev'));
 });
 
 //developer CSS
 gulp.task('dcss',function(){
-    gulp.src(['builds/dev/app/**/*.scss'])
+    gulp.src(['app/**/*.scss'])
         .pipe(scss())
         .pipe(concat('app.css'))
         //autoprefixer
@@ -46,28 +45,28 @@ gulp.task('dcss',function(){
 
 //developer WATCH
 gulp.task('dwatch', function(){
-    gulp.watch('builds/dev/app/**/*.js',['djs']);
-    gulp.watch('builds/dev/app/**/*.scss',['dcss']);
-    gulp.watch('builds/dev/app/**/*.jade',['djade']);
+    gulp.watch('app/**/*.js',['djs']);
+    gulp.watch('app/**/*.scss',['dcss']);
+    gulp.watch('app/**/*.jade',['djade']);
 });
 
 //developer JADE
 gulp.task('djade', function() {
+    var YOUR_LOCALS = {};
     gulp.src([
-        'builds/dev/app/**/*.jade'
+        'app/**/*.jade'
     ])
         .pipe(jade({
+            locals: YOUR_LOCALS,
             pretty: true
         }))
         .on('error', console.log)
-        .pipe(gulp.dest('./builds/dev/app'));
-    gulp.src(['builds/dev/app/index.html'])
-        .pipe(gulp.dest('./builds/dev'))
+        .pipe(gulp.dest('builds/dev'));
 });
 
 //develpoer IMG
 gulp.task('dimg', function() {
-    gulp.src('builds/dev/app/img/*')
+    gulp.src('app/img/*')
         .pipe(gulp.dest('builds/dev/i'));
 });
 

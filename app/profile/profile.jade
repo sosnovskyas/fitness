@@ -1,0 +1,17 @@
+.row
+    .col-xs-12(ng-include="'userSpace/userSpaceMenu.html'")
+.row
+    .col-xs-3
+        .row
+            .col-xs-12
+                div(ng-include="'userBar/userBar.html'")
+                br
+                br
+        .row
+            .col-xs-12
+                .list-group
+                    a.list-group-item(ui-sref="userSpace.profile.account", ui-sref-active="active", href="") Учётная запись
+                    a.list-group-item(ui-sref="userSpace.profile.password", ui-sref-active="active", href="") Пароль
+                    a.list-group-item(ui-sref="userSpace.profile.design", ui-sref-active="active", href="") Дизайн
+                    a.list-group-item(ui-sref="userSpace.profile.exit", ui-sref-active="active", href="") Выйти
+    .col-xs-9(ui-view="")
