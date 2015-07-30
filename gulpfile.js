@@ -13,6 +13,8 @@ gulp.task('djs',function(){
     gulp.src([
         'bower/jquery/dist/jquery.js',
         'bower/angular/angular.js',
+        'bower/firebase/firebase.js',
+        'bower/angularfire/dist/angularfire.js',
         'bower/angular-ui-router/release/angular-ui-router.js',
         'bower/angular-roure/angular-roure.js',
         'bower/bootstrap/dist/js/bootstrap.js'
