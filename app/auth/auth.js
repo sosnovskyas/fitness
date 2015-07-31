@@ -8,8 +8,8 @@
         ])
         .factory('Authentication', AuthenticationFactory)
         .config(configAuth)
-        .controller('RegisterCtrl',RegisterController)
-        .controller('LoginCtrl',LoginController);
+        .controller('RegisterCtrl', RegisterController)
+        .controller('LoginCtrl', LoginController);
 
     // @ngInject
     function AuthenticationFactory(DBC){
@@ -48,11 +48,16 @@
                     password : _user.password
                 })
                 .then(function(userData){
-                    consple.log('User '+ userData.uid + ' created successfully!');
+                    console.log('User '+ userData.uid + ' created successfully!');
                     var userRef = usersRef.child(userData.uid);
                     userRef.set({
                         fullname: _user.fullname,
                         date: Firebase.ServerValue.TIMESTAMP
+                    });
+
+                    return  DBC.get$Auth().$authWithPassword({
+                        email: _user.email,
+                        password: _user.password
                     });
                 })
         };
@@ -66,13 +71,13 @@
             .state('register', {
                 url: '/register',
                 templateUrl: 'auth/registration.html',
-                contioller: 'RegisterCtrl',
+                controller: 'RegisterCtrl',
                 controllerAs: 'rc'
             })
             .state('login', {
                 url: '/login',
                 templateUrl: 'auth/login.html',
-                contioller: 'LoginCtrl',
+                controller: 'LoginCtrl',
                 controllerAs: 'lc'
             })
     }
