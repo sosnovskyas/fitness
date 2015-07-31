@@ -10,8 +10,12 @@
             'fitness.userSpaceWorkout',
             'fitness.userSpaceStatistics',
             'fitness.userSpaceExercises',
-            'fitness.userSpaceProfile'
+            'fitness.userSpaceProfile',
+            'fitness.auth'
+            //,
+            //'fitness.fire'
         ])
+        .constant('FURL', 'https://ngfitness.firebaseio.com/')
         .config(FitnessConfig);
             function FitnessConfig($urlRouterProvider) {
                 $urlRouterProvider
