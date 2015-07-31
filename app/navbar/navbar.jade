@@ -1,4 +1,4 @@
-nav.navbar.navbar-inverse
+nav.navbar.navbar-inverse.navbar-collapse
     .navbar-header
         a(ui-sref="home").navbar-brand Fitness
     ul.nav.navbar-nav
@@ -8,3 +8,8 @@ nav.navbar.navbar-inverse
             a(ui-sref="about") About
         li(ui-sref-active="active")
             a(ui-sref="userSpace") Sing In
+    ul.nav.navbar-nav.navbar-right
+        li(ui-sref-active="active")
+            a(ui-sref="login") login
+        li(ui-sref-active="active")
+            a(ui-sref="register") regisration
