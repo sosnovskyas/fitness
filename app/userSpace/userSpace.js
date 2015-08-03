@@ -4,7 +4,8 @@
         .module('fitness.userSpace', [
             'fitness.userSpaceWorkout',
             'fitness.userSpaceExercises',
-            'fitness.fire'
+            //'fitness.fire'
+            'fitness.auth'
         ])
         .config(FitnessUserSpaceConfig)
         .controller('userSpaceCtrl',userSpaceController);
@@ -16,7 +17,10 @@
         $stateProvider
             .state('userSpace', {
                 url: '/userSpace',
-                templateUrl: 'userSpace/userSpace.html'
+                templateUrl: 'userSpace/userSpace.html',
+                resolve:{
+                    loggedIn: false
+                }
             })
 
     }

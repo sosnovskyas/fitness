@@ -8,4 +8,4 @@ form(name="loginForm", ng-submit="lc.login()")
     .form-group
         label(for="LoginPassword") password
         input(ng-model="lc.user.password", type="password")#LoginPassword.form-control
-    button(type="submit").btn.btn-default Login
+    button(type="submit", ng-submit="lc.login()").btn.btn-default Login

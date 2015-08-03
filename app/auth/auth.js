@@ -9,10 +9,20 @@
         .factory('Authentication', AuthenticationFactory)
         .config(configAuth)
         .controller('RegisterCtrl', RegisterController)
-        .controller('LoginCtrl', LoginController);
+        .controller('LoginCtrl', LoginController)
+        .controller('StatusCtrl', StatusController);
+
 
     // @ngInject
-    function AuthenticationFactory(DBC){
+    function StatusController(currentUser, Authentication){
+        var s = this;
+        s.signedIn = currentUser.signedIn;
+        s.userName = currentUser.name;
+        s.logout = Authentication.logout;
+    }
+
+    // @ngInject
+    function AuthenticationFactory(DBC, currentUser, $firebaseObject){
         var ref = DBC.getRef();
         var usersRef = ref.child('users');
         var o = {};
@@ -20,8 +30,16 @@
         function authHandler(error, authData){
             if(error){
                 console.warn('Login FAILED!', error)
-            }else{
-                console.log('Login success!', authData)
+            }else if (authData){
+                console.log('Login success!', authData);
+                currentUser.signedIn = true;
+                var user = $firebaseObject(usersRef.child(authData.uid));
+                user.$loaded(function(_user){
+                    currentUser.name = _user.fullname;
+                })
+            } else {
+                currentUser.name = '';
+                currentUser.signedIn = false;
             }
         }
 
@@ -30,15 +48,13 @@
             var authHndl = typeof _authHndl !== "undefined" ? _authHndl : authHandler;
 
             DBC.get$Auth()
-                .$authWithPassword({
-                    email: "email",
-                    password : "password"
-                })
+                .$authWithPassword(_user)
                 .then(authHndl);
         };/*login*/
 
         o.logout = function(){
             ref.unauth();
+            console.log('logout');
         };
 
         o.register = function(_user){
@@ -59,7 +75,13 @@
                         email: _user.email,
                         password: _user.password
                     });
+
                 })
+                .then(function(authData) {
+                    console.log("Logged in ad:", authData.uid);
+                }).catch(function(error) {
+                    console.error("Error", error);
+                });
         };
 
         return o;
@@ -104,6 +126,6 @@
         };
         s.login = function () {
             Authentication.login(s.user);
-        }
+        };
     }
 })();
