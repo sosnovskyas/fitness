@@ -3,14 +3,36 @@
     'use strict';
     angular
         .module('fitness.auth', [
-            'ui.router',
-            'fitness.fire'
+            'firebase',
+            'ui.router' // каждый модуль должен быть максимально независимым, а тут есть роутинг. считаю не грех добавть ui.router тут избыточно
         ])
+        .factory('DBC', DbFactory) //DB Connection
         .factory('Authentication', AuthenticationFactory)
         .config(configAuth)
         .controller('RegisterCtrl', RegisterController)
-        .controller('LoginCtrl', LoginController);
+        .controller('LoginCtrl', LoginController)
+        .controller('StatusCtrl', StatusController);
 
+    // @ngInject
+    function DbFactory (FURL, $firebaseAuth){
+        var o ={};
+        var ref = new Firebase(FURL);
+        var auth = $firebaseAuth(ref);
+
+        o.getRef = function (){
+            return ref;
+        };
+
+        o.get$Auth = function (){
+            return auth;
+        };
+
+        o.getAuth = function (){
+            return ref.getAuth();
+        };
+
+        return o;
+    }
     // @ngInject
     function AuthenticationFactory(DBC){
         var ref = DBC.getRef();
@@ -26,19 +48,18 @@
         }
 
         o.login = function (_user, _authHndl){
-            // если не задан то переопределяется
+            // если не задан то переопределяется хэндлер
             var authHndl = typeof _authHndl !== "undefined" ? _authHndl : authHandler;
 
             DBC.get$Auth()
-                .$authWithPassword({
-                    email: "email",
-                    password : "password"
-                })
+                .$authWithPassword(_user)
                 .then(authHndl);
+
         };/*login*/
 
         o.logout = function(){
             ref.unauth();
+            console.log('ref.unauth();')
         };
 
         o.register = function(_user){
@@ -60,6 +81,26 @@
                         password: _user.password
                     });
                 })
+                .then(function(authData) {
+                    console.log("Logged in as:", authData.uid);
+                })
+                .catch(function(error) {
+                    console.error("Error: ", error);
+                });
+        };
+
+        o.loggedIn = function(){
+            return !!DBC.getAuth();
+        };
+
+        o.$loggedIn = function($q){
+            if(o.loggedIn()){
+                console.log('Logged In');
+                return $q.resolve();
+            }else{
+                console.log('NO LOGINED');
+                return $q.reject();
+            }
         };
 
         return o;
@@ -104,6 +145,16 @@
         };
         s.login = function () {
             Authentication.login(s.user);
-        }
+        };
+
+        s.logout = function () {
+             Authentication.logout();
+        };
     }
+
+    // @ngInject
+    function StatusController (Authentication) {
+        var s = this;
+        //s.status = Authentication.status;
+     } 
 })();

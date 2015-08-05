@@ -24,7 +24,7 @@ gulp.task('djs',function(){
 
     // custom scripts
     gulp.src(['app/**/*.js'])
-        .pipe(concat('main.js'))
+        .pipe(concat('app.js'))
         .pipe(gulp.dest('builds/dev'));
 });
 
