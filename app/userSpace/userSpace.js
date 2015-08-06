@@ -6,9 +6,7 @@
             'fitness.userSpaceExercises'
         ])
         .config(FitnessUserSpaceConfig)
-        //.controller('userSpaceCtrl',userSpaceController)
     ;
-
 
     function FitnessUserSpaceConfig($stateProvider, $urlRouterProvider){
         $urlRouterProvider
@@ -16,23 +14,12 @@
         $stateProvider
             .state('userSpace', {
                 url: '/userSpace',
-                templateUrl: 'userSpace/userSpace.html'
+                templateUrl: 'userSpace/userSpace.html',
+                resolv: {
+                        signedIn:  function(){
+                            return $rootScope.currentUser.signedIn
+                    }
+                }
             })
-
     }
-
-    //function userSpaceController(){
-    //    var ref = new Firebase("https://ngfitness.firebaseio.com");
-    //    ref.authWithPassword({
-    //        email    : "lvlonstradamus@gmail.com",
-    //        password : "123123"
-    //    }, function(error, authData) {
-    //        if (error) {
-    //            console.log("Login Failed!", error);
-    //        } else {
-    //            console.log("Authenticated successfully with payload:", authData);
-    //        }
-    //    });
-    //}
-
 })();

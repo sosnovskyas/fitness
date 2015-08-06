@@ -20,6 +20,6 @@ nav(ng-controller="StatusCtrl as sc").navbar.navbar-inverse.navbar-collapse
             li(ui-sref-active="active", ng-hide="currentUser.signedIn")
                 a(ui-sref="register") regisration
             li(ng-if="currentUser.signedIn")
-                a {{currentUser.userName}}
+                a {{currentUser.name}}
             li(ng-show="currentUser.signedIn")
-                a(href="javascript:;", ng-click="sc.logout") Logout
+                a(ng-click="sc.logout()") Logout

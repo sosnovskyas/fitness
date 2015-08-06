@@ -66,7 +66,9 @@
 
         o.logout = function(){
             ref.unauth();
-            console.log('ref.unauth();')
+            $rootScope.currentUser.signedIn = false;
+            $rootScope.currentUser.name = '';
+            console.log('LOGOUT')
         };
 
         o.register = function(_user){
