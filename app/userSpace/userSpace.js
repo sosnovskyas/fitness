@@ -15,10 +15,20 @@
             .state('userSpace', {
                 url: '/userSpace',
                 templateUrl: 'userSpace/userSpace.html',
-                resolv: {
-                        signedIn:  function(){
-                            return $rootScope.currentUser.signedIn
-                    }
+                controller: 'StatusCtrl',
+                resolve: {
+                    auth: ['Authentication', '$q', function (Authentication, $q) {
+                        var d = $q.defer();
+                        if (Authentication.loggedIn()) {
+                            console.log('yes');
+                            d.resolve();
+                        } else {
+                            // here the rejection
+                            console.log('no');
+                            d.reject('not logged');
+                        }
+                        return d.promise;
+                    }]
                 }
             })
     }

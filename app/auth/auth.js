@@ -8,10 +8,12 @@
         ])
         .factory('DBC', DbFactory) //DB Connection
         .factory('Authentication', AuthenticationFactory)
+        .factory('UserExercises', UserExercisesFactory)
         .config(configAuth)
         .controller('RegisterCtrl', RegisterController)
         .controller('LoginCtrl', LoginController)
         .controller('StatusCtrl', StatusController)
+        .controller('UserCtrl', UserController)
     ;
 
     // @ngInject
@@ -44,6 +46,7 @@
             if(authData){
                 console.log('Login success!', authData);
                 $rootScope.currentUser.signedIn = true;
+                $rootScope.currentUser.email = authData.password.email;
                 var user = $firebaseObject(usersRef.child(authData.uid));
                 user.$loaded(function (_user) {
                     $rootScope.currentUser.name = _user.fullname;
@@ -51,6 +54,7 @@
             }else{
                 $rootScope.currentUser.name = '';
                 $rootScope.currentUser.signedIn = false;
+                $rootScope.currentUser.email = null;
             }
         }
 
@@ -100,11 +104,23 @@
         };
 
         o.loggedIn = function(){
-            return !!DBC.getAuth();
+            return $rootScope.currentUser.signedIn;
         };
         return o;
     }
+    // @ngInject
+    function UserExercisesFactory(DBC, $rootScope, $firebaseObject, $firebaseArray){
+        var o = {};
+        var ref = DBC.getRef();
+        var userRef = ref.child($rootScope.currentUser.email);
+        var userExercisesRef = ref.child('exercises')
+                                    .orderByChild('userId')
+                                    .equalTo($rootScope.currentUser.email);
+        o.$getUserExercises = function () {
+            return $firebaseArray(userExercisesRef).$loaded();
+        }
 
+    }
     // @ngInject
     function configAuth($stateProvider){
         $stateProvider
@@ -121,7 +137,6 @@
                 controllerAs: 'lc'
             })
     }
-
     // @ngInject
     function RegisterController (Authentication){
         var s = this;
@@ -134,7 +149,6 @@
             Authentication.register(s.user);
         }
     }
-
     // @ngInject
     function LoginController (Authentication) {
         var s = this;
@@ -146,12 +160,23 @@
             Authentication.login(s.user);
         };
     }
-
     // @ngInject
     function StatusController ($rootScope, Authentication) {
         var s = this;
         s.signedIn = $rootScope.currentUser.signedIn;
         s.username = $rootScope.currentUser.name;
         s.logout = Authentication.logout;
-     } 
+     }
+    // @ngInject
+    function UserController(UserExercises) {
+        var s = this;
+
+        s.exercises = [];
+        UserExercises
+            .$getUserExercises()
+            .then(function (_exercises) {
+                s.exercises = _exercises;
+            })
+
+    }
 })();
