@@ -11,7 +11,8 @@
         .config(configAuth)
         .controller('RegisterCtrl', RegisterController)
         .controller('LoginCtrl', LoginController)
-        .controller('StatusCtrl', StatusController);
+        .controller('StatusCtrl', StatusController)
+    ;
 
     // @ngInject
     function DbFactory (FURL, $firebaseAuth){
@@ -34,16 +35,22 @@
         return o;
     }
     // @ngInject
-    function AuthenticationFactory(DBC){
+    function AuthenticationFactory(DBC, $firebaseObject, $rootScope){
         var ref = DBC.getRef();
         var usersRef = ref.child('users');
         var o = {};
 
-        function authHandler(error, authData){
-            if(error){
-                console.warn('Login FAILED!', error)
+        function authHandler(authData){
+            if(authData){
+                console.log('Login success!', authData);
+                $rootScope.currentUser.signedIn = true;
+                var user = $firebaseObject(usersRef.child(authData.uid));
+                user.$loaded(function (_user) {
+                    $rootScope.currentUser.name = _user.fullname;
+                })
             }else{
-                console.log('Login success!', authData)
+                $rootScope.currentUser.name = '';
+                $rootScope.currentUser.signedIn = false;
             }
         }
 
@@ -73,6 +80,7 @@
                     var userRef = usersRef.child(userData.uid);
                     userRef.set({
                         fullname: _user.fullname,
+                        email: _user.email,
                         date: Firebase.ServerValue.TIMESTAMP
                     });
 
@@ -92,17 +100,6 @@
         o.loggedIn = function(){
             return !!DBC.getAuth();
         };
-
-        o.$loggedIn = function($q){
-            if(o.loggedIn()){
-                console.log('Logged In');
-                return $q.resolve();
-            }else{
-                console.log('NO LOGINED');
-                return $q.reject();
-            }
-        };
-
         return o;
     }
 
@@ -146,15 +143,13 @@
         s.login = function () {
             Authentication.login(s.user);
         };
-
-        s.logout = function () {
-             Authentication.logout();
-        };
     }
 
     // @ngInject
-    function StatusController (Authentication) {
+    function StatusController ($rootScope, Authentication) {
         var s = this;
-        //s.status = Authentication.status;
+        s.signedIn = $rootScope.currentUser.signedIn;
+        s.username = $rootScope.currentUser.name;
+        s.logout = Authentication.logout;
      } 
 })();
