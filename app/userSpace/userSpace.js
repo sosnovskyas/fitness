@@ -12,23 +12,22 @@
         $urlRouterProvider
             .when('/userSpace', '/userSpace/workout');
         $stateProvider
-            .state('userSpace', {
+            .state('userSpace',{
                 url: '/userSpace',
                 templateUrl: 'userSpace/userSpace.html',
-                controller: 'StatusCtrl',
-                resolve: {
-                    auth: ['Authentication', '$q', function (Authentication, $q) {
-                        var d = $q.defer();
-                        if (Authentication.loggedIn()) {
-                            console.log('yes');
-                            d.resolve();
-                        } else {
-                            // here the rejection
-                            console.log('no');
-                            d.reject('not logged');
+                controller: 'authCtrl as ac',
+                resolve:{
+                    signedIn: function(authFct, $q) {
+                        var defered = $q.defer();
+                        if (authFct.$getAuth()){
+                            console.log('OK');
+                            defered.resolve();
+                        }else{
+                            console.log('ERROR');
+                            defered.reject();
                         }
-                        return d.promise;
-                    }]
+                        return defered.promise;
+                    }
                 }
             })
     }
