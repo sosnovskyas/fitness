@@ -18,7 +18,7 @@ module.exports = {
         dest: dev
     },
     devImg: {
-        src: src + "/img/**",
+        src: src + "/img/**/*",
         dest: dev + "/i"
     },
     devMarkup: {
