@@ -9,7 +9,7 @@
         $stateProvider
             .state('about', {
                 url: '/about',
-                templateUrl: 'about/about.html'
+                templateUrl: 'public/about.html'
             })
 
     }
