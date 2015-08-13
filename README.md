@@ -9,20 +9,32 @@
 ```
 fitnress
 ├── bower
-├── builds
+├── build
 │   ├── dev
-│   │   ├── app
-│   │   │   ├── jade
-│   │   │   │   ├── index.jade
-│   │   │   ├── scss
-│   │   │   │   └── style.scss
-│   │   │   └── app.js
-│   │   └──
 │   └── prod
+├── gulp
+│   ├── tasks
+│   │   ├── default.js
+│   │   ├── dev-...
+│   │   └── prod-...
+│   └── config.js
+├──node_moduless
+├── src
+│   ├── img
+│   │   └── ...
+│   ├── private
+│   │   └── style.scss
+│   ├── public
+│   │   ├── index.jade
+│   │   ├── index.jade
+│   │   └── index.jade
+│   └── app.js
 ├── .bowerrc
 ├── .gitignore
+├── .jscsrc
 ├── bower.json
+├── firebase.json
 ├── gulpfile.js
 ├── package.json
-└── node_moduless
+└── README.md
 ```
