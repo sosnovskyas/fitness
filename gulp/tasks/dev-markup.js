@@ -4,10 +4,9 @@ var config = require('../config').devMarkup;
 var jade = require('gulp-jade');
 var browserSync  = require('browser-sync');
 
-
-gulp.task('dev-markup', function() {
+gulp.task('dev-markup', function () {
     var YOUR_LOCALS = {};
-    gulp.src(config.src)
+    return gulp.src(config.src)
         .pipe(jade({
             locals: YOUR_LOCALS,
             pretty: true
@@ -15,5 +14,5 @@ gulp.task('dev-markup', function() {
         .on('error', console.log)
         .pipe(gulp.dest(config.dest))
 
-        .pipe(browserSync.reload({stream:true}))
+        .pipe(browserSync.reload({stream:true}));
 });
