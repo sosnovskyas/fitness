@@ -3,6 +3,6 @@ var config = require('../config').devClean;
 
 var del = require('del');
 
-return gulp.task('dev-clean', function (callback) {
-    del([config.dest], callback);
+gulp.task('dev-clean', function (callback) {
+    return del([config.dest], callback);
 });

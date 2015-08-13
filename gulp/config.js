@@ -1,20 +1,25 @@
 var prod = './build/prod';
 var dev = './build/dev';
 var src = './src';
+var cssFileList = '/**/*.{sass,scss}';
+var jsFileList = '/**/*.{js,coffee}';
+var markupFileList = '/**/*.jade';
+var imgFileList = '/img/**/*';
 
 module.exports = {
 
     // DEVELOPMENT
     devCssCustom: {
-        src: src + '/**/*.{sass,scss}',
+        src: src + cssFileList,
         dest: dev,
+        concatFile: 'styles.css',
         settings: {
             indentedSyntax: true, // Enable .sass syntax!
             imagePath: 'images' // Used by the image-url helper
         }
     },
     devCssVendor: {
-        src: src + [
+        src: [
                 // bootstrap
                 'bower/bootstrap/dist/css/bootstrap.css',
                 'bower/bootstrap/dist/css/bootstrap-theme.css',
@@ -28,20 +33,36 @@ module.exports = {
             imagePath: 'images' // Used by the image-url helper
         }
     },
-    devJs: {
-        src: src + '/**/*.{js,coffee}',
+    devJsCustom: {
+        src: src + jsFileList,
+        dest: dev
+    },
+    devJsVendor: {
+        src: [
+                'bower/jquery/dist/jquery.js',
+                'bower/angular/angular.js',
+                'bower/firebase/firebase.js',
+                'bower/angularfire/dist/angularfire.js',
+                'bower/angular-ui-router/release/angular-ui-router.js',
+                'bower/angular-roure/angular-roure.js',
+                'bower/bootstrap/dist/js/bootstrap.js',
+                'bower/firebase-simple-login/firebase-simple-login.js'
+            ],
+        concatFile: 'lib.js',
         dest: dev
     },
     devImg: {
-        src: src + '/img/**/*',
+        src: src + imgFileList,
         dest: dev + '/i'
     },
     devMarkup: {
-        src: src + '/**/*.jade',
+        src: src + markupFileList,
         dest: dev
     },
     devWatch: {
-
+        js: src + jsFileList,
+        css: src + cssFileList,
+        markup: src + markupFileList
     },
     devClean: {
         dest: dev
@@ -53,7 +74,7 @@ module.exports = {
     // PRODUCTION
     prod:{},
     prodCss: {
-        src: src + '/**/*.{sass,scss}',
+        src: src + cssFileList,
         dest: prod,
         settings: {
             indentedSyntax: true, // Enable .sass syntax!
@@ -61,15 +82,15 @@ module.exports = {
         }
     },
     prodJs: {
-        src: src + '/**/*.{js,coffee}',
+        src: src + jsFileList,
         dest: prod
     },
     prodImg: {
-        src: src + '/img/**',
+        src: src + imgFileList,
         dest: prod + '/i'
     },
     prodMarkup: {
-        src: src + '/**/*.jade',
+        src: src + markupFileList,
         dest: prod
     },
     prodServer: {

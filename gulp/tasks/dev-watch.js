@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var config = require('../config').devWatch;
 
 gulp.task('dev-watch', function () {
-    gulp.watch('src/**/*.js', ['dev-js']);
-    gulp.watch('src/**/*.scss', ['dev-css-custom']);
-    gulp.watch('src/**/*.jade', ['dev-markup']);
+    gulp.watch(config.js, ['dev-js-custom']);
+    gulp.watch(config.css, ['dev-css-custom']);
+    gulp.watch(config.markup, ['dev-markup']);
 });
