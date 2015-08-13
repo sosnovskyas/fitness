@@ -7,9 +7,7 @@ var uglify = require('gulp-uglify');
 var obfuscate = require('gulp-obfuscate');
 var browserSync  = require('browser-sync');
 
-
-
-gulp.task('prod-js',function(){
+gulp.task('prod-js', function () {
     // vendor libtrarys
     gulp.src([
         'bower/jquery/dist/jquery.js',
@@ -23,7 +21,7 @@ gulp.task('prod-js',function(){
         .pipe(concat('lib.js'))
         .pipe(ngAnnotate())
         .pipe(uglify())
-        //.pipe(obfuscate()) // обфускация
+        // .pipe(obfuscate())  // обфускация
         .pipe(gulp.dest(config.dest));
 
     // custom scripts
@@ -31,8 +29,8 @@ gulp.task('prod-js',function(){
         .pipe(concat('app.js'))
         .pipe(ngAnnotate())
         .pipe(uglify())
-        //.pipe(obfuscate()) // обфускация
+        .pipe(obfuscate({replaceMethod: obfuscate.ZALGO})) // обфускация
         .pipe(gulp.dest(config.dest))
 
-        .pipe(browserSync.reload({stream:true}))
+        .pipe(browserSync.reload({stream:true}));
 });
