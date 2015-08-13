@@ -3,11 +3,11 @@ var config = require('../config').devJs;
 
 var concat = require('gulp-concat');
 var ngAnnotate = require('gulp-ng-annotate');
+var jscs = require('gulp-jscs');
 var browserSync  = require('browser-sync');
 
-
 // developer JS
-gulp.task('dev-js',function(){
+gulp.task('dev-js', function () {
     // vendor libtrarys
     gulp.src([
         'bower/jquery/dist/jquery.js',
@@ -19,6 +19,9 @@ gulp.task('dev-js',function(){
         'bower/bootstrap/dist/js/bootstrap.js',
         'bower/firebase-simple-login/firebase-simple-login.js'
     ])
+        .pipe(jscs({
+            fix: true
+        }))
         .pipe(concat('lib.js'))
         .pipe(gulp.dest(config.dest));
 
@@ -28,5 +31,5 @@ gulp.task('dev-js',function(){
         .pipe(ngAnnotate())
         .pipe(gulp.dest(config.dest))
 
-        .pipe(browserSync.reload({stream:true}))
+        .pipe(browserSync.reload({stream: true}));
 });
