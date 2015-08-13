@@ -93,6 +93,9 @@ module.exports = {
         src: src + markupFileList,
         dest: prod
     },
+    prodClean: {
+        dest: prod
+    },
     prodServer: {
         dest: prod
     }
