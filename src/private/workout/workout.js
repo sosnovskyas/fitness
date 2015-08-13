@@ -1,16 +1,15 @@
-// jscs:disable
-;(function(){
+;(function () {
     'use strict';
     angular
         .module('fitness.userSpaceWorkout', [])
         .config(FitnessUserSpaceWorkoutConfig);
 
-    function FitnessUserSpaceWorkoutConfig($stateProvider){
+    function FitnessUserSpaceWorkoutConfig($stateProvider) {
         $stateProvider
             .state('userSpace.workout', {
                 url: '/workout',
                 templateUrl: 'private/workout.html'
-            })
+            });
 
     }
 })();

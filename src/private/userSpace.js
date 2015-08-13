@@ -12,7 +12,7 @@
         $urlRouterProvider
             .when('/userSpace', '/userSpace/workout');
         $stateProvider
-            .state('userSpace',{
+            .state('userSpace', {
                 url: '/userSpace',
                 templateUrl: 'private/userSpace.html',
                 controller: 'authCtrl as ac',
