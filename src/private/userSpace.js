@@ -14,7 +14,7 @@
         $stateProvider
             .state('userSpace',{
                 url: '/userSpace',
-                templateUrl: 'userSpace/userSpace.html',
+                templateUrl: 'private/userSpace.html',
                 controller: 'authCtrl as ac',
                 resolve:{
                     signedIn: function(authFct, $q) {

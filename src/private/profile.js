@@ -12,23 +12,23 @@
             
             .state('userSpace.profile', {
                 url: '/profile',
-                templateUrl: 'userSpace/profile.html'
+                templateUrl: 'private/profile.html'
             })
             .state('userSpace.profile.account', {
                 url: '/account',
-                templateUrl: 'userSpace/profileAccount.html'
+                templateUrl: 'private/profileAccount.html'
             })
             .state('userSpace.profile.password', {
                 url: '/password',
-                templateUrl: 'userSpace/profilePassword.html'
+                templateUrl: 'private/profilePassword.html'
             })
             .state('userSpace.profile.design', {
                 url: '/design',
-                templateUrl: 'userSpace/profileDesign.html'
+                templateUrl: 'private/profileDesign.html'
             })
             .state('userSpace.profile.exit', {
                 url: '/exit',
-                templateUrl: 'userSpace/proflieExit.html'
+                templateUrl: 'private/proflieExit.html'
             });
 
     }

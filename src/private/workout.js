@@ -9,7 +9,7 @@
         $stateProvider
             .state('userSpace.workout', {
                 url: '/workout',
-                templateUrl: 'userSpace/workout.html'
+                templateUrl: 'private/workout.html'
             })
 
     }
