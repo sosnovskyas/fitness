@@ -1,4 +1,4 @@
-;(function(){
+;(function () {
     'use strict';
     angular
         .module('fitness.userSpace', [
@@ -6,20 +6,12 @@
             'fitness.userSpaceExercises'
         ])
         .config(FitnessUserSpaceConfig)
-        .filter('reverse', reverseFilter)
-    ;
+        .filter('toRub', toRublesFilter)
+     ;
 
-    function reverseFilter() {
-        return function (input, uppercase) {
-            var out = '';
-            for (var i = 0; i < input.length; i++) {
-                out = input.charAt(i) + out;
-            }
-            // условная часть для необязательного аргумента
-            if (uppercase) {
-                out = out.toUpperCase();
-            }
-            return out;
+    function toRublesFilter() {
+        return function (input) {
+            return String(Math.floor(input * 100) / 100).replace(/(\d)(?=(\d{3})+\.)/g, '$1 ')  + ' руб';
         };
     }
     function FitnessUserSpaceConfig($stateProvider, $urlRouterProvider) {
