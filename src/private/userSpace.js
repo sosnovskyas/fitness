@@ -28,7 +28,7 @@
             templateUrl: 'private/userBar/userBar.html',
             //replace: false,
             //transclude: false,
-            //restrict: 'A',
+            restrict: 'E',
             //scope: false,
             controller: function ($scope, $element, $attrs, $transclude, otherInjectables) {
             }
