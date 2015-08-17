@@ -19,5 +19,8 @@
     // @ngInject
     function exercisesController() {
         var s = this;
+        s.getExercises = function () {
+
+        };
     }
 })();
