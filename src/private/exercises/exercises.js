@@ -10,7 +10,8 @@
         $stateProvider
             .state('userSpace.exercises', {
                 url: '/exercises',
-                templateUrl: 'private/exercises/exercises.html'
+                templateUrl: 'private/exercises/exercises.html',
+                controller: 'exercisesCtrl as ec'
             });
     }
 
