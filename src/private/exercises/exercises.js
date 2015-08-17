@@ -6,6 +6,7 @@
         .controller('exercisesCtrl', exercisesController)
     ;
 
+    // @ngInject
     function FitnessUserSpaceExercisesConfig($stateProvider) {
         $stateProvider
             .state('userSpace.exercises', {
@@ -15,6 +16,7 @@
             });
     }
 
+    // @ngInject
     function exercisesController() {
         var s = this;
     }
