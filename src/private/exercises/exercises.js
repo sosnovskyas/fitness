@@ -1,15 +1,20 @@
-;(function(){
+;(function () {
     'use strict';
     angular
         .module('fitness.userSpaceExercises', [])
-        .config(FitnessUserSpaceExercisesConfig);
+        .config(FitnessUserSpaceExercisesConfig)
+        .controller('exercisesCtrl', exercisesController)
+    ;
 
-    function FitnessUserSpaceExercisesConfig($stateProvider){
+    function FitnessUserSpaceExercisesConfig($stateProvider) {
         $stateProvider
             .state('userSpace.exercises', {
                 url: '/exercises',
                 templateUrl: 'private/exercises/exercises.html'
-            })
+            });
+    }
 
+    function exercisesController() {
+        var s = this;
     }
 })();
