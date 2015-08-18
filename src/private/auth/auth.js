@@ -10,39 +10,48 @@
     ;
 
     // @ngInject
-    function authFactory(URL, $firebaseAuth){
+    function authFactory(URL, $firebaseAuth, $state){
         var ref = new Firebase(URL);
+        var authRef =  $firebaseAuth(ref);
 
-        return $firebaseAuth(ref);
+        return {
+            login: function (_user) {
+                authRef.$authWithPassword(_user)
+                    .then(function (authData) {
+                        console.log('Logged in as:', authData.uid);
+                        $state.transitionTo('userSpace');
+                    })
+                    .catch(function (error) {
+                        console.error('Authentication failed:', error);
+                        // $state.transitionTo('login');
+                    });
+            },
+
+            logout: function () {
+                authRef.$unauth();
+            },
+
+            auth: authRef.$getAuth(),
+
+            signedIn: function () {
+                return !authRef.$getAuth();
+            }
+        };
     }
 
     // @ngInject
-    function authController(authFct, $state){
+    function authController(authFct){
         var s = this;
         s.user = {
             email: 'qwe@qwe.ru',
             password: '1234'
         };
-        s.login = function () {
-            authFct.$authWithPassword(s.user)
-                .then(function (authData) {
-                    console.log('Logged in as:', authData.uid);
-                    $state.transitionTo('userSpace');
-                })
-                .catch(function (error) {
-                    console.error('Authentication failed:', error);
-                    $state.transitionTo('login');
-                });
-        };
+        s.login = authFct.login(s.user);
 
-        s.logout = function () {
-            authFct.$unauth();
-        };
+        s.logout = authFct.logout();
 
-        s.auth = authFct.$getAuth();
+        s.auth = authFct.auth;
 
-        s.signedIn = function () {
-            return !authFct.$getAuth();
-        };
+        s.signedIn = authFct.signedIn;
     }
 })();
