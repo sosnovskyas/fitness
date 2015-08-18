@@ -1,48 +1,60 @@
 ;(function () {
     angular
-        .module('auth',[
+        .module('auth', [
             'ui.router',
             'firebase'
         ])
-        .constant('URL','https://autokeys.firebaseio.com')
+        .constant('URL', 'https://autokeys.firebaseio.com')
         .factory('authFct', authFactory)
         .controller('authCtrl', authController)
     ;
 
-    //@ngInject
-    function authFactory(URL, $firebaseAuth){
+    // @ngInject
+    function authFactory(URL, $firebaseAuth, $state){
         var ref = new Firebase(URL);
+        var authRef =  $firebaseAuth(ref);
+        var o = {};
 
-        return $firebaseAuth(ref);
+        o.login = function (_user) {
+            authRef.$authWithPassword(_user)
+                .then(function (authData) {
+                    console.log('Logged in as:', authData.uid);
+                    $state.transitionTo('userSpace');
+                })
+                .catch(function (error) {
+                    console.error('Authentication failed:', error);
+                    // $state.transitionTo('login');
+                });
+        };
+
+        o.logout = function () {
+            authRef.$unauth();
+        };
+
+        o.signedIn = function () {
+            return authRef.$getAuth();
+        };
+
+        return o;
     }
 
-    //@ngInject
-    function authController(authFct, $state){
+    // @ngInject
+    function authController(authFct){
         var s = this;
         s.user = {
             email: 'qwe@qwe.ru',
             password: '1234'
         };
-        s.login = function(){
-            authFct.$authWithPassword(s.user)
-                .then(function(authData) {
-                    console.log("Logged in as:", authData.uid);
-                    $state.transitionTo('userSpace');
-                })
-                .catch(function(error) {
-                    console.error("Authentication failed:", error);
-                    $state.transitionTo('login');
-                });
+        s.login = function () {
+            return authFct.login(s.user);
         };
 
-        s.logout = function(){
-            authFct.$unauth();
+        s.logout = function () {
+            return authFct.logout();
         };
 
-        s.auth = authFct.$getAuth();
-
-        s.signedIn = function (){
-            return !authFct.$getAuth();
+        s.signedIn = function () {
+            return !!authFct.signedIn();
         }
     }
 })();
