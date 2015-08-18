@@ -13,30 +13,29 @@
     function authFactory(URL, $firebaseAuth, $state){
         var ref = new Firebase(URL);
         var authRef =  $firebaseAuth(ref);
+        var o = {};
 
-        return {
-            login: function (_user) {
-                authRef.$authWithPassword(_user)
-                    .then(function (authData) {
-                        console.log('Logged in as:', authData.uid);
-                        $state.transitionTo('userSpace');
-                    })
-                    .catch(function (error) {
-                        console.error('Authentication failed:', error);
-                        // $state.transitionTo('login');
-                    });
-            },
-
-            logout: function () {
-                authRef.$unauth();
-            },
-
-            auth: authRef.$getAuth(),
-
-            signedIn: function () {
-                return !authRef.$getAuth();
-            }
+        o.login = function (_user) {
+            authRef.$authWithPassword(_user)
+                .then(function (authData) {
+                    console.log('Logged in as:', authData.uid);
+                    $state.transitionTo('userSpace');
+                })
+                .catch(function (error) {
+                    console.error('Authentication failed:', error);
+                    // $state.transitionTo('login');
+                });
         };
+
+        o.logout = function () {
+            authRef.$unauth();
+        };
+
+        o.signedIn = function () {
+            return authRef.$getAuth();
+        };
+
+        return o;
     }
 
     // @ngInject
@@ -46,12 +45,16 @@
             email: 'qwe@qwe.ru',
             password: '1234'
         };
-        s.login = authFct.login(s.user);
+        s.login = function () {
+            return authFct.login(s.user);
+        };
 
-        s.logout = authFct.logout();
+        s.logout = function () {
+            return authFct.logout();
+        };
 
-        s.auth = authFct.auth;
-
-        s.signedIn = authFct.signedIn;
+        s.signedIn = function () {
+            return !!authFct.signedIn();
+        }
     }
 })();
