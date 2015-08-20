@@ -4,6 +4,7 @@
         .module('fitness.userSpaceExercises', [])
         .config(FitnessUserSpaceExercisesConfig)
         .controller('exercisesCtrl', exercisesController)
+        .factory('excFct', exercisesFactory)
     ;
 
     // @ngInject
@@ -17,10 +18,47 @@
     }
 
     // @ngInject
-    function exercisesController() {
-        var s = this;
-        s.getExercises = function () {
+    function exercisesFactory (authFct, $firebaseArray) {
+        var o = {};
+        var ref = authFct.getRef();
+        var userExercisesRef = ref.child('exercises')
+                                    .orderByChild('userId');
+                                    //.orderByValue();
+                                    //.equalTo('simplelogin:29');
+
+        o.$getUserExercises = function () {
+            var res = userExercisesRef
+                                .on("value",
+                                    function(snapshot) {
+                                        return snapshot.val();
+                                    },
+                                    function (errorObject) {
+                                        console.log("The read failed: " + errorObject.code);
+                                    });
+            console.log('qwe');
+            return res;
 
         };
+
+        //    function(){
+        //    return $firebaseArray(userExercisesRef).$loaded();
+        //};
+
+
+        return o;
+    }
+
+    // @ngInject
+    function exercisesController( authFct, excFct) {
+        var s = this;
+        s.exc = function () {
+            console.log(excFct.$getUserExercises
+            //    .foreach(function (data){
+            //    data.val()
+            //})
+            );
+            return excFct.$getUserExercises;
+        };
+
     }
 })();
