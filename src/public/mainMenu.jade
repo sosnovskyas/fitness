@@ -12,7 +12,7 @@ nav(ng-controller="authCtrl as ac").navbar.navbar-inverse.navbar-collapse
                 a(ui-sref="home") Home
             li(ui-sref-active="active")
                 a(ui-sref="about") About
-        ul.nav.navbar-nav.navbar-right(ng-if="!ac.signedIn()")
+        ul.nav.navbar-nav.navbar-right(ng-if="ac.signedIn()")
             li#menuLogin.dropdown
                 a#navLogin.dropdown-toggle(href='#', data-toggle='dropdown') user {{ac.auth.password.email}}
                 .dropdown-menu(style='padding:17px;')
@@ -28,7 +28,7 @@ nav(ng-controller="authCtrl as ac").navbar.navbar-inverse.navbar-collapse
                         li
                             a(ng-click="ac.logout()", ui-sref="home") LOGOUT
 
-        ul.nav.navbar-nav.navbar-right(ng-if="ac.signedIn()")
+        ul.nav.navbar-nav.navbar-right(ng-if="!ac.signedIn()")
             li#menuLogin.dropdown
                 a#navLogin.dropdown-toggle(href='#', data-toggle='dropdown') Login
                 .dropdown-menu(style='padding:17px;')
@@ -37,7 +37,7 @@ nav(ng-controller="authCtrl as ac").navbar.navbar-inverse.navbar-collapse
                         input#password(name='password', type='password', placeholder='Password', ng-model="ac.user.password")
                         br
                         button#btnLogin.btn(type='submit') Login
-        ul.nav.navbar-nav.navbar-right(ng-if="ac.signedIn()")
+        ul.nav.navbar-nav.navbar-right(ng-if="!ac.signedIn()")
             li#menuLogin.dropdown
                 a#navLogin.dropdown-toggle(href='#', data-toggle='dropdown') registration
                 .dropdown-menu(style='padding:17px;')
