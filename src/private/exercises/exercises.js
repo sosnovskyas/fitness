@@ -1,15 +1,26 @@
-;(function(){
+;(function () {
     'use strict';
     angular
         .module('fitness.userSpaceExercises', [])
-        .config(FitnessUserSpaceExercisesConfig);
+        .config(FitnessUserSpaceExercisesConfig)
+        .controller('exercisesCtrl', exercisesController)
+    ;
 
-    function FitnessUserSpaceExercisesConfig($stateProvider){
+    // @ngInject
+    function FitnessUserSpaceExercisesConfig($stateProvider) {
         $stateProvider
             .state('userSpace.exercises', {
                 url: '/exercises',
-                templateUrl: 'private/exercises/exercises.html'
-            })
+                templateUrl: 'private/exercises/exercises.html',
+                controller: 'exercisesCtrl as ec'
+            });
+    }
 
+    // @ngInject
+    function exercisesController() {
+        var s = this;
+        s.getExercises = function () {
+
+        };
     }
 })();
