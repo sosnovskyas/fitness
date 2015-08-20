@@ -4,7 +4,7 @@
             'ui.router',
             'firebase'
         ])
-        .constant('URL','https://autokeys.firebaseio.com')
+        .constant('URL','https://ngfitness.firebaseio.com')
         .factory('authFct', authFactory)
         .controller('authCtrl', authController)
     ;
