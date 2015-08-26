@@ -3,7 +3,6 @@ var config = require('../config').devJsCustom;
 
 var concat = require('gulp-concat');
 var ngAnnotate = require('gulp-ng-annotate');
-var jscs = require('gulp-jscs');
 var browserSync  = require('browser-sync');
 
 // developer JS
