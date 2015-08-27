@@ -57,7 +57,7 @@
         };
 
         o.signedIn = function () {
-            return DBC.getAuthRef().$getAuth();
+            return Boolean(DBC.getAuthRef().$getAuth());
         };
 
         o.getRef = function () {
@@ -88,7 +88,7 @@
         };
 
         s.signedIn = function () {
-            return Boolean(authFct.signedIn());
+            return authFct.signedIn();
         };
     }
 })();
