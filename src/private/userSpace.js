@@ -2,8 +2,6 @@
     'use strict';
     angular
         .module('fitness.userSpace', [
-            'fitness.userSpaceWorkout',
-            'fitness.userSpaceExercises'
         ])
         .config(FitnessUserSpaceConfig)
         .filter('toRub', toRublesFilter)
