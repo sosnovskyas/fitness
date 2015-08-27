@@ -44,7 +44,7 @@
             DBC.getAuthRef().$authWithPassword(_user)
                 .then(function (authData) {
                     console.log('Logged in as:', authData.uid);
-                    $state.transitionTo('workflow');
+                    $state.transitionTo('userSpace');
                 })
                 .catch(function (error) {
                     console.error('Authentication failed:', error);
@@ -67,7 +67,6 @@
         return o;
     }
 
-    //@ngInject
     // @ngInject
     function authController(authFct) {
         var s = this;
