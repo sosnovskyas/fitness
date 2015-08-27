@@ -11,7 +11,8 @@
             'fitness.userSpaceStatistics',
             'fitness.userSpaceExercises',
             'fitness.userSpaceProfile',
-            'auth'
+            'auth',
+            'dbf'
         ])
         .config(FitnessConfig)
     ;

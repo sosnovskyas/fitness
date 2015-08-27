@@ -22,9 +22,8 @@
         var o = {};
         var ref = authFct.getRef();
         var userExercisesRef = ref.child('exercises')
-                                    .orderByChild('userId');
-                                    //.orderByValue();
-                                    //.equalTo('simplelogin:29');
+                                    .orderByChild('userId')
+                                    .equalTo('simplelogin:29');
 
         o.$getUserExercises = function () {
             var res = userExercisesRef
@@ -39,24 +38,13 @@
             return res;
 
         };
-
-        //    function(){
-        //    return $firebaseArray(userExercisesRef).$loaded();
-        //};
-
-
         return o;
     }
 
     // @ngInject
-    function exercisesController( authFct, excFct) {
+    function exercisesController(excFct) {
         var s = this;
         s.exc = function () {
-            console.log(excFct.$getUserExercises
-            //    .foreach(function (data){
-            //    data.val()
-            //})
-            );
             return excFct.$getUserExercises;
         };
 

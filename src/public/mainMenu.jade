@@ -16,7 +16,7 @@ nav(ng-controller="authCtrl as ac").navbar.navbar-inverse.navbar-collapse
             li#menuLogin.dropdown
                 a#navLogin.dropdown-toggle(href='#', data-toggle='dropdown') user {{ac.auth.password.email}}
                 .dropdown-menu(style='padding:17px;')
-                    form#formLogin.form(ng-submit="ac.login()")
+                    form#formLogin.form(ng-submit="ac.login")
                         li
                             a(ui-sref="userSpace.workout") Workout
                         li

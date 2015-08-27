@@ -54,7 +54,7 @@
                 resolve:{
                     signedIn: function (authFct, $q) {
                         var defered = $q.defer();
-                        if (authFct.signedIn()){
+                        if (!authFct.signedIn()){
                             console.log('OK');
                             defered.resolve();
                         } else {
