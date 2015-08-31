@@ -9,29 +9,11 @@
             span.input-group-btn
                button.btn.btn-default(type='button') Go!
       .row
-         .col-sm-6.col-md-4
+         .col-sm-6.col-md-4(ng-repeat="exercise in exercises")
             .thumbnail
-               img(data-src='holder.js/100%x200', alt='Generic placeholder thumbnail')
+               //img(data-src='holder.js/100%x200', alt='Generic placeholder thumbnail')
                .caption
-                  h3 Thumbnail label
-                  p Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                  p
-                     a.btn.btn-primary(href='#', role='button') Button
-                     a.btn.btn-default(href='#', role='button') Button
-         .col-sm-6.col-md-4
-            .thumbnail
-               img(data-src='holder.js/100%x200', alt='Generic placeholder thumbnail')
-               .caption
-                  h3 Thumbnail label
-                  p Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                  p
-                     a.btn.btn-primary(href='#', role='button') Button
-                     a.btn.btn-default(href='#', role='button') Button
-         .col-sm-6.col-md-4
-            .thumbnail
-               img(data-src='holder.js/100%x200', alt='Generic placeholder thumbnail')
-               .caption
-                  h3 Thumbnail label
+                  h3 {{exercise.name}}
                   p Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                   p
                      a.btn.btn-primary(href='#', role='button') Button
