@@ -13,8 +13,8 @@
             .thumbnail
                //img(data-src='holder.js/100%x200', alt='Generic placeholder thumbnail')
                .caption
-                  h3 {{exercise.name}}
-                  p Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                  h3(ng-bind="exercise.name")
+                  p(ng-bind="exercise.description")
                   p
                      a.btn.btn-primary(href='#', role='button') Button
                      a.btn.btn-default(href='#', role='button') Button
