@@ -18,35 +18,24 @@
     }
 
     // @ngInject
-    function exercisesFactory (authFct, $firebaseArray) {
+    function exercisesFactory(DBC, $firebaseArray) {
         var o = {};
-        var ref = authFct.getRef();
-        var userExercisesRef = ref.child('exercises')
-                                    .orderByChild('userId')
-                                    .equalTo('simplelogin:29');
 
-        o.$getUserExercises = function () {
-            var res = userExercisesRef
-                                .on("value",
-                                    function(snapshot) {
-                                        return snapshot.val();
-                                    },
-                                    function (errorObject) {
-                                        console.log("The read failed: " + errorObject.code);
-                                    });
-            console.log('qwe');
-            return res;
+        o.getUserExercises = $firebaseArray(DBC.getRef().child('exercises'));
 
+        o.addExercise = function (_exercise) {
+            var t = {};
+            t.timestamp = Firebase.ServerValue.TIMESTAMP;
+            t.userID = DBC.getAuthRef().$getAuth().password.uid;
+            t.name = _exercise.name;
+            t.description = _exercise.description;
+            DBC.getRef().child('exercises').push(t);
         };
         return o;
     }
 
     // @ngInject
-    function exercisesController(excFct) {
-        var s = this;
-        s.exc = function () {
-            return excFct.$getUserExercises;
-        };
-
+    function exercisesController($scope, excFct) {
+        $scope.exercises = excFct.getUserExercises;
     }
 })();
