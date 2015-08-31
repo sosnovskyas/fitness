@@ -26,10 +26,10 @@
             templateUrl: 'private/userBar/userBar.html',
             //replace: false,
             //transclude: false,
-            restrict: 'E',
+            restrict: 'E'//,
             //scope: false,
-            controller: function ($scope, $element, $attrs, $transclude, otherInjectables) {
-            }
+            //controller: function ($scope, $element, $attrs, $transclude, otherInjectables) {
+            //}
         };
     }
 
